@@ -11,7 +11,7 @@ module.exports = function(app, passport, db) {
         app.get('/books', isLoggedIn, function(req, res) {
             db.collection('messages').find().toArray((err, result) => {
                 if (err) return console.log(err)
-                res.render('bookmarkBook.ejs', {
+                res.render('books.ejs', {
                 user : req.user,
                 messages: result
                 })
@@ -29,12 +29,9 @@ module.exports = function(app, passport, db) {
     // create bowl routes ===============================================================
     
         app.post('/books', (req, res) => {
-            db.collection('book').insertOne({
+            db.collection('books').insertOne({
                 title: req.body.title, 
-                base: req.body.base, 
-                protein: req.body.protein, 
-                veggies: req.body.veggies, 
-                toppings: req.body.toppings
+                link: req.body.link
             }, (err, result) => {
             if (err) return console.log(err)
             console.log('saved to database')
@@ -43,49 +40,49 @@ module.exports = function(app, passport, db) {
         })
 
         app.get('/savedBooks', function(req,res){
-            db.collection('books').find().toArray((err, bowl) =>{
+            db.collection('books').find().toArray((err, books) =>{
                 if (err) return console.log(err)
-                    res.render('bookmarkBooks.ejs', {
+                    res.render('createBookmark.ejs', {
                 user : req.user,
-                bowl : bowl})
+                books : books})
             })
         })
     // add to page with saved recipes
     //thumbs up
-        // app.put('/recipes', (req, res) => {
-        //     db.collection('bowl')
-        //     .findOneAndUpdate({title: req.body.title}, {
-        //     $set: {
-        //         thumbUp:req.body.thumbUp + 1
-        //     }
-        // }, {
-        //     sort: {_id: -1},
-        //     upsert: true
-        // }, (err, result) => {
-        //     if (err) return res.send(err)
-        //     res.send(result)
-        // })
-        // })
-        // app.put('/recipesDown', (req, res) => { 
-        //     db.collection('bowl')
-        //     .findOneAndUpdate({title: req.body.title}, {
-        //     $set: {
-        //         thumbUp:req.body.thumbUp - 1
-        //     }
-        // }, {
-        //     sort: {_id: -1},
-        //     upsert: true
-        // }, (err, result) => {
-        //     if (err) return res.send(err)
-        //     res.send(result)
-        // })
-        // })
-        // app.delete('/recipes', (req, res) => {
-        //     db.collection('bowl').findOneAndDelete({title: req.body.title}, (err, result) => {
-        //     if (err) return res.send(500, err)
-        //     res.send('Message deleted!')
-        // })
-        // })
+        app.put('/savedBooks', (req, res) => {
+            db.collection('books')
+            .findOneAndUpdate({title: req.body.title, link: req.body.link}, {
+            $set: {
+                heart:req.body.heart + 1
+            }
+        }, {
+            sort: {_id: -1},
+            upsert: true
+        }, (err, result) => {
+            if (err) return res.send(err)
+            res.send(result)
+        })
+        })
+        app.put('/savedBooksDown', (req, res) => { 
+            db.collection('books')
+            .findOneAndUpdate({title: req.body.title, link: req.body.link}, {
+            $set: {
+                heart:req.body.heart - 1
+            }
+        }, {
+            sort: {_id: -1},
+            upsert: true
+        }, (err, result) => {
+            if (err) return res.send(err)
+            res.send(result)
+        })
+        })
+        app.delete('/savedBooks', (req, res) => {
+            db.collection('books').findOneAndDelete({title: req.body.title,link: req.body.link}, (err, result) => {
+            if (err) return res.send(500, err)
+            res.send('Message deleted!')
+        })
+        })
     
     // =============================================================================
     // AUTHENTICATE (FIRST LOGIN) ==================================================

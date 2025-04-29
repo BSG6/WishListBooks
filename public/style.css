@@ -5,3 +5,52 @@ body{
 img{
   height: 200px;
 }
+/* index  */
+.jumbotron{
+  color:#c88302;
+}
+
+/* books  */
+.books {
+  margin: 50px auto;
+  text-align: center;
+}
+
+.books input {
+  display: block;
+  width: 80%;
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.books button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.books a {
+  display: block;
+  margin-top: 20px;
+  color: #c88302;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;;
+}
+
+.books a:hover {
+  text-decoration: underline;
+}
+.giphy{
+  height:200px;
+}
+/* createbookmark */
+.title{
+font-size: 30px;
+}
+.underline{
+  border-bottom:2px solid black ;
+  margin-bottom:10px;
+}

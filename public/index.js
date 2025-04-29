@@ -1,21 +1,18 @@
 const submit = document.querySelector('.submit')
-submit.addEventListener('click', getBowl)
+submit.addEventListener('click', getBook)
 
-function getBowl(){
+function getBook(){
     // const form = document.querySelector('#form')
     // console.log(form.title.value)
     // const title = document.querySelector('#')
     // const title = document.querySelector('.title')
 
-        fetch('bowl', {
+        fetch('books', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 'title': title,
-                'base': base,
-                'protien':protein,
-                'veggies':veggies,
-                'toppings': toppings
+                'link': link
             })
             })
             .then(response => {
