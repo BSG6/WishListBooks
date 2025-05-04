@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <title>Book Wishlist</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-book"></span> Wishlist</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+
+        </div>
+        <div class="books">
+            <!-- <h3>Recipes</h3> -->
+            <ol class="messages">
+            <% for(var i=0; i<books.length; i++) {%>
+                <li class="message underline">
+                <span class="title"><%= books[i].title %></span>
+                <a><%= books[i].link %></a>
+                <span ><%= books[i].heart %></span>
+                <span><i class="fa fa-heart" aria-hidden="true"></i></span>
+                <span><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>
+                <span><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+                </li>
+            <% } %>
+            </ol>
+            <p><a href="/books">Create a new book</a></p>
+</div>
+
+<script src="savedBookmark.js"></script>
+
+</body>
+</html> 
