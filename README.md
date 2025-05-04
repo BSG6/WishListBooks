@@ -23,8 +23,6 @@ MongoDB
 
 I built this app as a way to practice full CRUD functionality. Users can add books to a wishlist, view the full list, and remove books when they're done. The backend is powered by Express and MongoDB, and the data is rendered using EJS.
 
-Optimizations (optional):
-No styling yet! Future updates will include CSS for layout and mobile responsiveness. I also plan to add sort/filter options, or even status tags like “reading,” “read,” and “want to read.”
 
 Lessons Learned:
 This was a great refresher on how all the parts of a CRUD app come together. I got more comfortable with Express routes, MongoDB queries, and keeping things clean and functional before worrying about design.
